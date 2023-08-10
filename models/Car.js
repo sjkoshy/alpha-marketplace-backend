@@ -7,7 +7,7 @@ const CarSchema = new mongoose.Schema({
   year: Number,
   color: String,
   price: Number,
-  userId: String,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
   image: String,
 });
 
