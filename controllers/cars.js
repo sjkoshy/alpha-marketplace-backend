@@ -72,7 +72,10 @@ export const searchColor = async (req, res) => {
 
 export const searchPrice = async (req, res) => {
   try {
-    const cars = await Car.find({ price: req.params.price });
+    const minPrice = parseInt(req.query.minPrice || 0);
+    const maxPrice = parseInt(req.query.maxPrice || Infinity);
+
+    const cars = await Car.find({ price: { $gte: minPrice, $lte: maxPrice } });
     res.json(cars);
   } catch (error) {
     console.log(error.message);
