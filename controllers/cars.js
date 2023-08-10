@@ -76,7 +76,7 @@ export const searchPrice = async (req, res) => {
 export const getCar = async (req, res) => {
   try {
     const { id } = req.params;
-    const car = await Car.findById(id);
+    const car = await Car.findById(id).populate("user", "_id username");
     if (car) {
       return res.json(car);
     }
