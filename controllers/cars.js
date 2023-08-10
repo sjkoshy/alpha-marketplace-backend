@@ -1,4 +1,4 @@
-import Car from "../models/car";
+import Car from "../models/Car.js";
 
 // router.get("/cars/:model", controllers.searchModel);
 // router.get("/cars/:type", controllers.searchType);

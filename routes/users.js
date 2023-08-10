@@ -4,7 +4,7 @@ import * as controllers from "../controllers/users.js";
 const router = Router();
 
 router.post("/signup", controllers.signUp);
-router.post("/login", controllers.login);
+router.post("/login", controllers.signIn);
 router.get("/verify", controllers.verify);
 
 export default router;
