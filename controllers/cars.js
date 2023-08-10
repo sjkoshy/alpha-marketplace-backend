@@ -1,15 +1,5 @@
 import Car from "../models/Car.js";
 
-// router.get("/cars/:model", controllers.searchModel);
-// router.get("/cars/:type", controllers.searchType);
-// router.get("/cars/:year", controllers.searchYear);
-// router.get("/cars/:color", controllers.searchColor);
-// router.get("/cars/:price", controllers.searchPrice);
-// router.get("/cars/:id", controllers.getCar);
-// router.post("/cars", controllers.createCar);
-// router.put("/cars/:id", restrict, controllers.updateCar);
-// router.delete("/cars/:id", restrict, controllers.deleteCar);
-
 export const getCars = async (req, res) => {
   try {
     const cars = await Car.find();
