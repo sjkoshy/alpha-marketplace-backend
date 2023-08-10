@@ -14,6 +14,7 @@ app.use(logger("dev"));
 app.use("/api", routes);
 
 db.on("connected", () => {
+  console.clear();
   console.log("Connected to MongoDB");
   app.listen(PORT, () =>
     process.env.NODE_ENV === "production"
