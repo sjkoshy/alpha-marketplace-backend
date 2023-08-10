@@ -1,7 +1,7 @@
 import db from "../connection.js";
 import Car from "../models/Car.js";
 import User from "../models/User.js";
-// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 const insertData = async () => {
   // reset database
