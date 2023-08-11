@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-import User from '../models/User.js'
+import User from "../models/User.js";
 
 // development //
 let SALT_ROUNDS = 11;
@@ -13,6 +13,20 @@ if (process.env.NODE_ENV === "production") {
   TOKEN_KEY = process.env.TOKEN_KEY;
 }
 
+export const getUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id).populate("username");
+    if (user) {
+      return res.json(user);
+    }
+    res.status(404).json({ message: "User not found!" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ error: error.message });
+  }
+};
+
 export const signUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -20,7 +34,7 @@ export const signUp = async (req, res) => {
     const user = new User({
       username,
       email,
-      password_digest
+      password_digest,
     });
 
     await user.save();
@@ -28,16 +42,16 @@ export const signUp = async (req, res) => {
     const payload = {
       id: user._id,
       username: user.username,
-      email: user.email
+      email: user.email,
     };
 
     const token = jwt.sign(payload, TOKEN_KEY);
     res.status(201).json({ token });
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     res.status(400).json({ error: error.message });
   }
-}
+};
 
 export const signIn = async (req, res) => {
   try {
@@ -49,7 +63,7 @@ export const signIn = async (req, res) => {
       const payload = {
         id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
       };
 
       const token = jwt.sign(payload, TOKEN_KEY);
@@ -60,8 +74,8 @@ export const signIn = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
-  
+};
+
 export const verify = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -72,4 +86,4 @@ export const verify = async (req, res) => {
   } catch (error) {
     res.status(401).send("Not Authorized");
   }
-}
+};
