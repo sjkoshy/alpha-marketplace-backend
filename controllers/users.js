@@ -13,8 +13,6 @@ if (process.env.NODE_ENV === "production") {
   TOKEN_KEY = process.env.TOKEN_KEY;
 }
 
-
-
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -29,14 +27,14 @@ export const getUser = async (req, res) => {
   }
 };
 
-export const getUserByUsername = async (req, res) => {
+export const getUserIdByUsername = async (req, res) => {
   try {
     const { username } = req.params;
     const user = await User.findOne({ username });
     if (user) {
-      return res.json({ username: user.username });
+      return res.json({ id: user._id });
     }
-    res.status(404).json({ message: "Username not found!" });
+    res.status(404).json({ message: "UserId not found by username!" });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ error: error.message });
