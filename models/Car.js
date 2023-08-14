@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const CarSchema = new mongoose.Schema({
   make: String,
@@ -7,7 +8,7 @@ const CarSchema = new mongoose.Schema({
   year: Number,
   color: String,
   price: Number,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+  user: { type: Schema.Types.ObjectId, ref: "users" },
   image: String,
 });
 
