@@ -13,8 +13,6 @@ if (process.env.NODE_ENV === "production") {
   TOKEN_KEY = process.env.TOKEN_KEY;
 }
 
-
-
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
