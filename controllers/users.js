@@ -13,19 +13,7 @@ if (process.env.NODE_ENV === "production") {
   TOKEN_KEY = process.env.TOKEN_KEY;
 }
 
-// export const checkout = async (req, res) => {
-//   try {
-//     const { carIds } = req.body;
-//     console.log(req.body);
-//     await Car.deleteMany({ _id: { $in: carIds } });
-//     res
-//       .status(200)
-//       .json({ success: true, message: "Car successfully purchased!" });
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).json({ success: false, error: error.message });
-//   }
-// };
+
 
 export const getUser = async (req, res) => {
   try {
@@ -38,6 +26,20 @@ export const getUser = async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.status(404).json({ error: error.message });
+  }
+};
+
+export const getUserByUsername = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username });
+    if (user) {
+      return res.json({ username: user.username });
+    }
+    res.status(404).json({ message: "Username not found!" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
   }
 };
 
