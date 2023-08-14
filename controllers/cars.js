@@ -87,6 +87,20 @@ export const getCar = async (req, res) => {
   }
 };
 
+export const getCarByUserId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const cars = await Car.find({ user: id });
+    if (cars) {
+      return res.json(cars);
+    }
+    res.status(404).json({ message: `Car (by user ${id}) not found!` });
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ error: error.message });
+  }
+};
+
 export const createCar = async (req, res) => {
   try {
     const car = new Car(req.body);

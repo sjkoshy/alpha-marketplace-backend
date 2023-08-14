@@ -4,9 +4,10 @@ import * as controllers from "../controllers/users.js";
 const router = Router();
 
 router.get("/:id", controllers.getUser);
+router.get("/username/:username", controllers.getUserByUsername);
 router.post("/signup", controllers.signUp);
 router.post("/login", controllers.signIn);
 router.get("/verify", controllers.verify);
-router.post("/checkout", controllers.checkout);
+
 
 export default router;
