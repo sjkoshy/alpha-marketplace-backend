@@ -13,6 +13,19 @@ if (process.env.NODE_ENV === "production") {
   TOKEN_KEY = process.env.TOKEN_KEY;
 }
 
+export const checkout = async (req, res) => {
+  try {
+    const { carIds } = req.body;
+    await Car.deleteMany({ _id: { $in: carIds } });
+    res
+      .status(200)
+      .json({ success: true, message: "Car successfully purchased!" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
