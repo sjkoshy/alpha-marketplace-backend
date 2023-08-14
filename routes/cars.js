@@ -5,6 +5,7 @@ import restrict from "../helpers/restrict.js";
 const router = Router();
 
 router.get("/cars", controllers.getCars);
+router.get("/cars/user/:id", controllers.getCarByUserId);
 router.get("/cars/make/:make", controllers.searchMake);
 router.get("/cars/model/:model", controllers.searchModel);
 router.get("/cars/type/:type", controllers.searchType);
