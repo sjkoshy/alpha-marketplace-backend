@@ -40,6 +40,20 @@ export const getUser = async (req, res) => {
   }
 };
 
+export const getUserByUsername = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username });
+    if (user) {
+      return res.json({ username: user.username });
+    }
+    res.status(404).json({ message: "Username not found!" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const signUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
