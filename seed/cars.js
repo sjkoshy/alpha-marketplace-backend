@@ -147,11 +147,11 @@ const insertData = async () => {
       model: "Accord",
       type: "Sedan",
       year: 2018,
-      color: "Green",
+      color: "Red",
       price: 21000,
       user: user5._id,
       image:
-        "https://img.favpng.com/18/12/19/honda-motor-company-car-dealership-2018-honda-accord-png-favpng-yKHZMm3fenDZKMssv75xPQ5XL.jpg",
+        "https://di-uploads-pod15.dealerinspire.com/lousobhhonda/uploads/2018/10/2018-Honda-Accord-Hero-Image.png",
     },
     {
       make: "Nissan",
